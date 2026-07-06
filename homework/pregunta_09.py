@@ -5,8 +5,12 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 librerias de pandas para resolver las preguntas.
 """
 
+import pandas as pd
 
 def pregunta_09():
+    df = pd.read_table("files/input/tbl0.tsv")
+    df['year'] = (df['c3'].str.split('-').str[0]).to_frame()
+    return df
     """
     Agregue el año como una columna al dataframe que contiene el archivo
     `tbl0.tsv`.

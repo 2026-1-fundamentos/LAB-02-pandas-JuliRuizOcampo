@@ -5,8 +5,14 @@ datos requeridos se encuentran en los archivos `tbl0.tsv`, `tbl1.tsv` y
 librerias de pandas para resolver las preguntas.
 """
 
+import pandas as pd
 
 def pregunta_12():
+    df = pd.read_table("files/input/tbl2.tsv")
+    df = df.sort_values(by=["c0", "c5a", "c5b"])
+    df['c5'] = (df['c5a'].astype(str) + ":" + df['c5b'].astype(str))
+    rta = df.groupby("c0")["c5"].apply(lambda x: ",".join(x)) .reset_index()
+    return rta
     """
     Construya una tabla que contenga `c0` y una lista separada por ','
     de los valores de la columna `c5a`  y `c5b` (unidos por ':') de la
